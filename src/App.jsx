@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { InputTodo } from './components/InputTodo';
 
 export const App = () => {
   const [todoText, setTodoText] = useState('');
@@ -51,11 +52,7 @@ export const App = () => {
 
   return (
     <>
-      <div className="input-area">
-        <input placeholder="TODOを入力" value={todoText} onChange={onChangeTodoText} onKeyPress={onKeyPressAdd} />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
-
+      <InputTodo todoText={todoText} onChange={onChangeTodoText} onClick={onClickAdd} onKeyPress={onKeyPressAdd} />
       <div className="input-area">
         <p>未完了のTODO</p>
         <ul>
@@ -76,16 +73,16 @@ export const App = () => {
       <div className="input-area">
         <p>完了のTODO</p>
         <ul>
-        { completeTodos.map((todo, index) => {
-          return (
-            <li key={todo}>
-              <div className="list-text">{todo}</div>
-              <div className="list-buttons">
-                <button onClick={() => onClickUndo(index)}>戻す</button>
-              </div>
-            </li>
-          )
-        })}
+          { completeTodos.map((todo, index) => {
+            return (
+              <li key={todo}>
+                <div className="list-text">{todo}</div>
+                <div className="list-buttons">
+                  <button onClick={() => onClickUndo(index)}>戻す</button>
+                </div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </>
